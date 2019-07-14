@@ -135,6 +135,22 @@ sed -i 's|#DAEMON_CONF=""|DAEMON_CONF=/etc/hostapd/hostapd.conf|g' /etc/default/
 echo "[*] Compiling Wiegotcha C code"
 gcc -o ../wiegotcha wiegotcha.c -L/usr/local/lib -lwiringPi -lpthread
 
+#setup cgi-bin
+cp ./confs/writecard.sh /usr/lib/cgi-bin/ #copy cgi-bin files
+cp ./confs/simulatecard.sh /usr/lib/cgi-bin/
+chmod +x /usr/lib/cgi-bin/simulatecard.sh #set excicute for cgi-bin files
+chmod +x /usr/lib/cgi-bin/writecard.sh
+echo "www-data ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers #give www-data sudo rights
+
+# unmask and enable hostapd
+systemctl unmask hostapd
+systemctl enable hostapd
+systemctl start hostapd
+
+#install proxmark
+chmod +x proxmarksetup.sh
+./proxmarksetup.sh
+
 #Enable i2c on boot for hardware clock
 #TODO: This is currently done via raspi-config.
 #TODO: Hoping to eliminate the interaction.
