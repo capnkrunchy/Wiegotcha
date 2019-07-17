@@ -21,7 +21,7 @@ echo ""
 echo -e "\e[0;31m[+] the mac address of your proxmark is $macadd\e[0m"
 sleep 3
 
-echo "rfcomm bind rfcomm0 $macadd" /etc/rc.local #bind rfcomm0 to mac address
+echo "rfcomm bind rfcomm0 $macadd" >> /etc/rc.local #bind rfcomm0 to mac address
 
 apt-get install expect
 chmod +x proxmarkbluetooth.exp
