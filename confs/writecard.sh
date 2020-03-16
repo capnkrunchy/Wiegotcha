@@ -8,7 +8,7 @@ variable=$1
 echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
 echo '</head>'
 echo '<body>'
-sudo dummy=$variable sh -c 'echo "lf hid clone" $dummy | /root/proxmark3/client/proxmark3 /dev/ttyACM0'
+sudo dummy=$variable sh -c 'echo "lf hid clone" $dummy | /root/proxmark3/client/proxmark3 /dev/rfcomm0'
 echo '</body>'
 echo '</html>'
 
